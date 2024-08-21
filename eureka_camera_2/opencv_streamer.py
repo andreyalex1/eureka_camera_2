@@ -17,26 +17,38 @@ class opencv_streamer(Node):
     def __init__(self, name='cam1'):
         super().__init__('opncv_streamer')
         self.name = name
-        self.pub = self.create_publisher(Image, 'image_raw', 10)
-        self.vid = cv2.VideoCapture('/dev/video0', cv2.CAP_V4L2)
-        self.vid.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter.fourcc(*"MJPG"))
-        self.vid.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-        self.vid.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
-        self.vid.set(cv2.CAP_PROP_FPS, 30)
-        width = int(self.vid.get(cv2.CAP_PROP_FRAME_WIDTH))
-        height = int(self.vid.get(cv2.CAP_PROP_FRAME_HEIGHT))
-
-        print(width,height)
-        timer_period = 0.003  # seconds
+        self.pub1 = self.create_publisher(Image, '/micro1/image_raw', 10)
+        self.pub2 = self.create_publisher(Image, '/micro2/image_raw', 10)
+        timer_period = .1  # seconds
         self.timer = self.create_timer(timer_period, self.spin)
         self.get_logger().info('camera ' + str(name) + " started")
     def __del__(self):
-        self.vid.release() 
+        self.vid1.release() 
+        self.vid2.release() 
     def spin(self):
-        ret, frame = self.vid.read() 
+        self.vid1 = cv2.VideoCapture('/dev/micro1', cv2.CAP_V4L2)
+        self.vid1.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter.fourcc(*"YUYV"))
+        self.vid1.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        self.vid1.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+        self.vid1.set(cv2.CAP_PROP_FPS, 10)
+        ret, frame = self.vid1.read() 
+        print(ret)
         msg = ros2_numpy.msgify(Image, frame, encoding='bgr8') 
-        print(1)
-        self.pub.publish(msg)
+        self.pub1.publish(msg)
+        self.vid1.release() 
+        print("img1 published!")
+        self.vid2 = cv2.VideoCapture('/dev/micro2', cv2.CAP_V4L2)
+        self.vid2.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter.fourcc(*"YUYV"))
+        self.vid2.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        self.vid2.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+        self.vid2.set(cv2.CAP_PROP_FPS, 1)
+        ret, frame = self.vid2.read() 
+        print(ret)
+        msg = ros2_numpy.msgify(Image, frame, encoding='bgr8') 
+        self.pub2.publish(msg)
+        self.vid2.release()
+        print("img2 published!")
+        
       
 
 

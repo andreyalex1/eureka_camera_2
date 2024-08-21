@@ -24,6 +24,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'opencv_streamer = eureka_camera_2.opencv_streamer:main',
         ],
     },
 )
