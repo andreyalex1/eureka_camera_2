@@ -9,18 +9,24 @@ rs_dir = get_package_share_directory('realsense2_camera')
 
 def generate_launch_description():
     return LaunchDescription([
-    #   IncludeLaunchDescription(
-    #        launch_description_source = PythonLaunchDescriptionSource(rs_dir + '/launch/rs_launch.py'),
-    #        launch_arguments={'pointcloud.enable' : 'true'}.items()
-    #    ),
-        Node(
-            package='usb_cam',
-            executable='usb_cam_node_exe',
-            name='hazcam',
-            namespace='hazcam',
-            output="screen",
-            parameters=["/home/eurekanuc/ros2_ws/src/eureka_camera_2/eureka_camera_2/hazcam_parameters.yaml"]
-        ),
+  #     IncludeLaunchDescription(
+  #          launch_description_source = PythonLaunchDescriptionSource(rs_dir + '/launch/rs_launch.py'),
+  #          launch_arguments={
+  #                          'pointcloud.enable' : 'true', 
+  #                          'unite_imu_method' :  '2', 
+  #                          'enable_gyro': 'true', 
+  #                          'enable_accel': 'true',
+  #        #                  'initial_reset' : 'true'
+  #                          }.items()
+  #      ),
+  #      Node(
+   #         package='usb_cam',
+  #          executable='usb_cam_node_exe',
+  #          name='hazcam',
+  #          namespace='hazcam',
+    #        output="screen",
+   #         parameters=["/home/eurekanuc/ros2_ws/src/eureka_camera_2/eureka_camera_2/hazcam_parameters.yaml"]
+#        ),
         Node(
             package='usb_cam',
             executable='usb_cam_node_exe',
@@ -34,21 +40,45 @@ def generate_launch_description():
             executable='usb_cam_node_exe',
             name='topdowncam',
             namespace='topdowncam',
-            output="screen",
+      #      output="screen",
             parameters=["/home/eurekanuc/ros2_ws/src/eureka_camera_2/eureka_camera_2/topdowncam_parameters.yaml"]
         ),
         Node(
-            package='eureka_camera_2',
-            executable='opencv_streamer',
-            name='opencv_streamer',
-            shell=True,
+            package='usb_cam',
+            executable='usb_cam_node_exe',
+            name='armcam',
+            namespace='armcam',
+     #       output="screen",
+            parameters=["/home/eurekanuc/ros2_ws/src/eureka_camera_2/eureka_camera_2/armcam_parameters.yaml"]
         ),
- #       Node(
- #           package='usb_cam',
- #           executable='usb_cam_node_exe',
- #           name='armncam',
-  #          namespace='armcam',
-  #          parameters=["/home/eurekanuc/ros2_ws/src/eureka_camera_2/eureka_camera_2/armcam_parameters.yaml"]
-  #     ),
+        Node(
+            package='usb_cam',
+            executable='usb_cam_node_exe',
+            name='geocam',
+            namespace='geocam',
+            parameters=["/home/eurekanuc/ros2_ws/src/eureka_camera_2/eureka_camera_2/geocam_parameters.yaml"]
+       ),
+       Node(
+            package='usb_cam',
+            executable='usb_cam_node_exe',
+            name='platformcam',
+            namespace='platformcam',
+            parameters=["/home/eurekanuc/ros2_ws/src/eureka_camera_2/eureka_camera_2/platformcam_parameters.yaml"]
+       ),
+       Node(
+            package='usb_cam',
+            executable='usb_cam_node_exe',
+            name='micro2',
+            namespace='micro2',
+            parameters=["/home/eurekanuc/ros2_ws/src/eureka_camera_2/eureka_camera_2/micro2_parameters.yaml"]
+       ),
+       
+    #    Node(
+    #        package='eureka_camera_2',
+    #        executable='opencv_streamer',
+    #        name='opencv_streamer',
+    #        shell=True,
+    #    ),
+        
         
     ])
