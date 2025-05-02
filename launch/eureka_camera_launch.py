@@ -32,53 +32,21 @@ def generate_launch_description():
             executable='usb_cam_node_exe',
             name='pancam',
             namespace='pancam',
+            respawn=True,
+            respawn_delay=10,
         #    output="screen",
-            parameters=["/home/eurekanuc/ros2_ws/src/eureka_camera_2/eureka_camera_2/pancam_parameters.yaml"]
+            parameters=["/home/jetson/yahboom_ws/src/eureka_camera_2/eureka_camera_2/pancam_parameters.yaml"]
         ),
         Node(
             package='usb_cam',
             executable='usb_cam_node_exe',
             name='topdowncam',
             namespace='topdowncam',
+            respawn=True,
+            respawn_delay=10,
       #      output="screen",
-            parameters=["/home/eurekanuc/ros2_ws/src/eureka_camera_2/eureka_camera_2/topdowncam_parameters.yaml"]
+            parameters=["/home/jetson/yahboom_ws/src/eureka_camera_2/eureka_camera_2/topdowncam_parameters.yaml"]
         ),
-        Node(
-            package='usb_cam',
-            executable='usb_cam_node_exe',
-            name='armcam',
-            namespace='armcam',
-     #       output="screen",
-            parameters=["/home/eurekanuc/ros2_ws/src/eureka_camera_2/eureka_camera_2/armcam_parameters.yaml"]
-        ),
-        Node(
-            package='usb_cam',
-            executable='usb_cam_node_exe',
-            name='geocam',
-            namespace='geocam',
-            parameters=["/home/eurekanuc/ros2_ws/src/eureka_camera_2/eureka_camera_2/geocam_parameters.yaml"]
-       ),
-       Node(
-            package='usb_cam',
-            executable='usb_cam_node_exe',
-            name='platformcam',
-            namespace='platformcam',
-            parameters=["/home/eurekanuc/ros2_ws/src/eureka_camera_2/eureka_camera_2/platformcam_parameters.yaml"]
-       ),
-       Node(
-            package='usb_cam',
-            executable='usb_cam_node_exe',
-            name='micro2',
-            namespace='micro2',
-            parameters=["/home/eurekanuc/ros2_ws/src/eureka_camera_2/eureka_camera_2/micro2_parameters.yaml"]
-       ),
-       
-    #    Node(
-    #        package='eureka_camera_2',
-    #        executable='opencv_streamer',
-    #        name='opencv_streamer',
-    #        shell=True,
-    #    ),
         
         
     ])

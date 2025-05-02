@@ -12,10 +12,10 @@ def generate_launch_description():
        IncludeLaunchDescription(
             launch_description_source = PythonLaunchDescriptionSource(rs_dir + '/launch/rs_launch.py'),
             launch_arguments={
-                            'device_type' : 'd435',
+                            'device_type' : 'd435i',
+                            'enable_color': 'true',
                             'pointcloud.enable' : 'true', 
                             'pointcloud.allow_no_texture_points' : 'true',
-                            'unite_imu_method' :  '2', 
                             'enable_gyro': 'true', 
                             'enable_accel': 'true',
                             'tf_publish_rate': '10',
