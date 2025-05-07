@@ -5,7 +5,7 @@ from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 
 
-rs_dir = get_package_share_directory('realsense2_camera')
+#rs_dir = get_package_share_directory('realsense2_camera')
 
 def generate_launch_description():
     return LaunchDescription([
@@ -35,7 +35,7 @@ def generate_launch_description():
             respawn=True,
             respawn_delay=10,
         #    output="screen",
-            parameters=["/home/jetson/yahboom_ws/src/eureka_camera_2/eureka_camera_2/pancam_parameters.yaml"]
+            parameters=["/home/eurekajetson/ros2_ws/src/eureka_camera_2/eureka_camera_2/pancam_parameters.yaml"]
         ),
         Node(
             package='usb_cam',
@@ -45,7 +45,7 @@ def generate_launch_description():
             respawn=True,
             respawn_delay=10,
       #      output="screen",
-            parameters=["/home/jetson/yahboom_ws/src/eureka_camera_2/eureka_camera_2/topdowncam_parameters.yaml"]
+            parameters=["/home/eurekajetson/ros2_ws/src/eureka_camera_2/eureka_camera_2/topdowncam_parameters.yaml"]
         ),
         
         
