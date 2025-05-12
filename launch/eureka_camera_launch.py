@@ -47,6 +47,25 @@ def generate_launch_description():
       #      output="screen",
             parameters=["/home/eurekajetson/ros2_ws/src/eureka_camera_2/eureka_camera_2/topdowncam_parameters.yaml"]
         ),
-        
+        Node(
+            package='usb_cam',
+            executable='usb_cam_node_exe',
+            name='hazcam',
+            namespace='hazcam',
+            respawn=True,
+            respawn_delay=10,
+      #      output="screen",
+            parameters=["/home/eurekajetson/ros2_ws/src/eureka_camera_2/eureka_camera_2/hazcam_parameters.yaml"]
+        ),
+        Node(
+            package='usb_cam',
+            executable='usb_cam_node_exe',
+            name='armcam',
+            namespace='armcam',
+            respawn=True,
+            respawn_delay=10,
+      #      output="screen",
+            parameters=["/home/eurekajetson/ros2_ws/src/eureka_camera_2/eureka_camera_2/armcam_parameters.yaml"]
+        ),
         
     ])
