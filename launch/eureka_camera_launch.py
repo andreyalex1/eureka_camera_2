@@ -67,15 +67,15 @@ def generate_launch_description():
       #      output="screen",
             parameters=["/home/eurekajetson/ros2_ws/src/eureka_camera_2/eureka_camera_2/armcam_parameters.yaml"]
         ),
-        Node(
-            package='usb_cam',
-            executable='usb_cam_node_exe',
-            name='ircam',
-            namespace='ircam',
-            respawn=True,
-            respawn_delay=10,
-      #      output="screen",
-            parameters=["/home/eurekajetson/ros2_ws/src/eureka_camera_2/eureka_camera_2/ircam_parameters.yaml"]
-        ),
+  #      Node(
+   #         package='usb_cam',
+   #         executable='usb_cam_node_exe',
+  #          name='ircam',
+   #         namespace='ircam',
+   #         respawn=True,
+  #          respawn_delay=10,
+  #    #      output="screen",
+  #          parameters=["/home/eurekajetson/ros2_ws/src/eureka_camera_2/eureka_camera_2/ircam_parameters.yaml"]
+  #      ),
         
     ])
